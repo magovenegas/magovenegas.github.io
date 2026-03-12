@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoja de Vida</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --accent: #c8531a;
+    --muted: #7a6e60;
+    --line: #d4cfc5;
+    --card: #faf7f2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 40px auto;
+    background: var(--card);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 1100px;
+    animation: fadeIn 0.6s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, #e8873a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    border: 3px solid rgba(255,255,255,0.15);
+  }
+
+  .name-block { text-align: center; }
+  .name-block h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+  }
+  .name-block .role {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .sidebar-section { display: flex; flex-direction: column; gap: 12px; }
+
+  .sidebar-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.85);
+  }
+
+  .contact-item .icon {
+    width: 22px;
+    height: 22px;
+    background: rgba(200,83,26,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  .skill-row { display: flex; flex-direction: column; gap: 10px; }
+  .skill-item { display: flex; flex-direction: column; gap: 4px; }
+  .skill-name {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(245,240,232,0.9);
+    display: flex;
+    justify-content: space-between;
+  }
+  .skill-name span { color: var(--accent); font-size: 11px; }
+  .skill-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #e8873a);
+    border-radius: 2px;
+    animation: grow 1s ease both;
+  }
+  @keyframes grow { from { width: 0 !important; } }
+
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(245,240,232,0.85);
+  }
+  .lang-dots { display: flex; gap: 4px; }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+  .dot.filled { background: var(--accent); }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .summary p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #3d3529;
+    font-weight: 300;
+  }
+  .summary p strong { color: var(--accent); font-weight: 500; }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 24px; }
+  .timeline-item { display: grid; grid-template-columns: 100px 1fr; gap: 16px; }
+  .timeline-left { text-align: right; padding-top: 2px; }
+  .tl-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .tl-period {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  .timeline-right {
+    border-left: 2px solid var(--line);
+    padding-left: 20px;
+    padding-bottom: 8px;
+    position: relative;
+  }
+  .timeline-right::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .tl-title {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .tl-org {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+  .tl-desc {
+    font-size: 12.5px;
+    color: #4a4238;
+    margin-top: 8px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── EDUCATION CARDS ── */
+  .edu-grid { display: flex; flex-direction: column; gap: 14px; }
+  .edu-card {
+    background: var(--paper);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+  }
+  .edu-deg {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .edu-uni { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 300; }
+  .edu-year { font-size: 11px; color: var(--accent); margin-top: 4px; font-weight: 500; }
+
+  /* ── TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 5px 12px;
+    font-size: 11.5px;
+    color: var(--ink);
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .tag:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; max-width: 100%; }
+  }
+
+  p {
+    text-align: justify; 
+   }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="avatar-wrap">
+      <div class="avatar"> <img src="foto.png" alt="foto"></div>
+      <div class="name-block">
+        <h1>Camilo Eduardo<br>Venegas</h1>
+        <div class="role">Backend Developer</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Contacto</div>
+      <div class="contact-item"><div class="icon">✉</div>cvenegso89@gmail.com</div>
+      <div class="contact-item"><div class="icon">☎</div>+57 312 367 6111</div>
+      <div class="contact-item"><div class="icon">⌖</div>Bogotá, Colombia</div>
+      <div class="contact-item"><div class="icon">⬡</div>https://linkedin.com/in/camilo-eduardo-venegas-solorzano-7b5477144</div>
+      <div class="contact-item"><div class="icon">⌥</div>https://github.com/magovenegas</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Habilidades Técnicas</div>
+      <div class="skill-row">
+        <div class="skill-item">
+          <div class="skill-name">Php / Laravel <span>95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">AWS <span>50%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Git <span>95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">MySQL <span>80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Docker / CI-CD <span>70%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Idiomas</div>
+      <div class="lang-item">
+        Español
+        <div class="lang-dots">
+          <div class="dot filled"></div><div class="dot filled"></div>
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <section class="summary">
+      <div class="section-title">Perfil Profesional</div>
+        <p>Ingeniero de Sistemas y Desarrollador PHP Avanzado con <strong>10+ años de experiencia</strong> en implementación
+        de soluciones web. Especializado en desarrollo backend con conocimientos en frontend, implementación de
+        web services, conexión entre aplicativos y consumo de APIs. Experiencia en levantamiento de
+        requerimientos, casos de uso y metodologías ágiles (Scrum). Manejo de Git, Composer, MySQL y servicios
+        AWS. Capacidad para gestionar proyectos completos, desde el análisis inicial hasta la entrega final al cliente</p>
+    </section>
+
+    <section>
+      <div class="section-title">Experiencia Laboral</div>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="tl-year">2022</div>
+            <div class="tl-period">2026</div>
+          </div>
+          <div class="timeline-right">
+            <div class="tl-title">Desarrollador PHP Advance</div>
+            <div class="tl-org">Legion Technology SAS</div>
+            <div class="tl-desc" style="text-align: justify;" >Construcción del backend de app móvil con PHP y APIs REST (Axios / async/await). Desarrollo de CRM con integración a múltiples aplicativos externos. Liderazgo de una persona a cargo</div>
+            <div class="tl-desc" style="text-align: justify;" >Gestión de infraestructura en AWS, administración de servidores Ubuntu y contenedores Docker. Optimización de consultas MySQL y generación de informes técnicos</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="tl-year">2019</div>
+            <div class="tl-period">2022</div>
+          </div>
+          <div class="timeline-right">
+            <div class="tl-title">Programador Web</div>
+            <div class="tl-org">ERV Asociados</div>
+            <div class="tl-desc" style="text-align: justify;">Gestión e implementación de proyectos web de principio a fin. Desarrollo de soluciones backend en PHP con integración a servicios externos. Mantenimiento y optimización de bases de datos MySQL. Participación en levantamiento de requerimientos con clientes</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="tl-year">2017</div>
+            <div class="tl-period">2019</div>
+          </div>
+          <div class="timeline-right">
+            <div class="tl-title">Analista de desarrollo</div>
+            <div class="tl-org">T&G - THINK & GROW de Colombia Ltda</div>
+            <div class="tl-desc" style="text-align: justify;">Desarrollo y mantenimiento de un CRM de nómina, implementando funcionalidades para la gestión y procesamiento de pagos a empleados. Soporte a plataformas empresariales, integración entre aplicativos y documentación técnica bajo metodología Scrum.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="tl-year">2013</div>
+            <div class="tl-period">2016</div>
+          </div>
+          <div class="timeline-right">
+            <div class="tl-title">Programador junior</div>
+            <div class="tl-org">EVERIS AN NTT DATA COMPANY</div>
+            <div class="tl-desc" style="text-align: justify;">Desarrollo y soporte de plataformas web para clientes del sector telecomunicaciones.Implementación de funcionalidades en PHP y MySQL. Primer acercamiento a entornos empresariales de gran escala con equipos multidisciplinarios</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="tl-year">2012</div>
+            <div class="tl-period">2012</div>
+          </div>
+          <div class="timeline-right">
+            <div class="tl-title">Practicante</div>
+            <div class="tl-org">CONTRALORÍA DE BOGOTA D.C — Bogotá, Colombia</div>
+            <div class="tl-desc" style="text-align: justify;">Realización de aplicativos web para la Dirección de Capacitación y Cooperación Técnica de la Contraloría de Bogotá</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Formación Académica</div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-deg">EDUCACIÓN SUPERIOR</div>
+          <div class="edu-uni"> Universidad Cooperativa de Colombia — Bogotá</div>
+          <div class="edu-year">2008 – 2018</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-deg">ARQUITECTURA DE SOFTWARE Y CLOUD COMPUTING</div>
+          <div class="edu-uni"> Pontificia Universidad Javeriana</div>
+          <div class="edu-year">2026 — Certificado</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-deg">CURSOS DE ACTUALIZACION</div>
+          <div class="edu-uni"> Plataforma platzi</div>
+          <div class="edu-year">2026 — Certificado</div>
+          <div class="edu-year">https://platzi.com/p/camilovenegas/</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tecnologías y Herramientas</div>
+      <div class="tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">Docker</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Git</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">RESTful</span>
+        <span class="tag">Php</span>
+        <span class="tag">Laravel</span>
+        <span class="tag">Scrum</span>
+        <span class="tag">MySQL</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>
