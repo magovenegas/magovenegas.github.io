@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
+<title>Portafolio</title>
+<link rel="icon" type="image/png" href="portafolio.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -286,6 +287,49 @@
     .nav-links { display: none; }
     .hero-ctas { flex-direction: column; }
   }
+  .redes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .red-card {
+    width: 150px;
+    text-align: center;
+  }
+
+  .red-card a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    padding: 14px 10px;
+    border-radius: 10px;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .red-card a:hover {
+    transform: translateY(-4px);
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .red-card img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .red-card span {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .red-card img {
+    mix-blend-mode: multiply; /* elimina el blanco visualmente */
+  }
 </style>
 </head>
 <body>
@@ -295,8 +339,10 @@
   <div class="nav-logo">Camilo Eduardo Venegas Solorzano</div>
   <ul class="nav-links">
     <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#educacion">Educacion</a></li>
     <li><a href="#experiencia">Experiencia</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#Contacto">Contacto</a></li>
   </ul>
 </nav>
 
@@ -328,6 +374,7 @@
     <div class="about-text reveal">
       <p>Ingeniero de Sistemas y Desarrollador PHP Avanzado con más de 10 años de experiencia en implementación de soluciones web. Especializado en desarrollo backend con conocimientos en frontend, implementación de web services, conexión entre aplicativos y consumo de APIs.</p>
       <p>Experiencia en levantamiento de requerimientos, casos de uso y metodologías ágiles (Scrum). Manejo de Git, Composer, MySQL y servicios AWS. Capacidad para gestionar proyectos completos, desde el análisis inicial hasta la entrega final al cliente</p>
+      <p>Me apasiona el aprendizaje continuo (Platzi), contribuyo a proyectos de código abierto (GitHub) y sigo de cerca las tecnologías de Google (Google Developers)</p>
     </div>
     <div class="skills-grid reveal">
       <div class="skill-item">
@@ -358,8 +405,27 @@
   </div>
 </section>
 
+<!-- Educacion -->
+<section id="educacion" class="exp-bg">
+  <div class="section-header reveal">
+    <p class="section-label">Trayectoria Académica</p>
+    <h2 class="section-title">Formación</h2>
+    <div class="section-line"></div>
+  </div>
+  <div style="margin-bottom: 20px;">
+    <p class="exp-period">2008 — 2018</p>
+    <p>INGENIERO DE SISTEMAS</p>
+    <h3 class="exp-role"> Universidad Cooperativa de Colombia.</h3>
+  </div>
+  <div>
+    <p class="exp-period">2026 — Actualmente</p>
+    <p>ARQUITECTURA DE SOFTWARE Y CLOUD COMPUTING</p>
+    <h3 class="exp-role">Pontificia Universidad Javeriana.</h3>
+  </div>
+</section>
+
 <!-- EXPERIENCIA -->
-<section id="experiencia" class="exp-bg">
+<section id="experiencia">
   <div class="section-header reveal">
     <p class="section-label">Trayectoria</p>
     <h2 class="section-title">Experiencia<br>Laboral</h2>
@@ -446,7 +512,7 @@
 </section>
 
 <!-- PROYECTOS -->
-<section id="proyectos">
+<section id="proyectos" class="exp-bg">
   <div class="section-header reveal">
     <p class="section-label">Portafolio</p>
     <h2 class="section-title">Proyectos<br>Destacados</h2>
@@ -503,6 +569,60 @@
         <span class="project-tech">Docker</span>
         <span class="project-tech">JavaScript</span>
       </div>
+    </div>
+  </div>
+  <div class="section-header reveal">
+    <h2 class="section-title">Certificaciones</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal" style="display: flex; flex-direction: column; align-items: center;">
+      <h3 class="project-title">Desarrollo Web Backend con PHP </h3>
+      <h3 class="project-title">Platzi 2026</h3>
+    </div>
+    <div class="project-card reveal" style="display: flex; flex-direction: column; align-items: center;">
+      <h3 class="project-title">Scrum Master </h3>
+      <h3 class="project-title">Platzi 2025</h3>
+     
+    </div>
+    <div class="project-card reveal" style="display: flex; flex-direction: column; align-items: center;">
+      <h3 class="project-title">Backend con PHP </h3>
+      <h3 class="project-title">Platzi 2026</h3>
+    </div>
+  </div>
+</section>
+
+<!-- contacto -->
+<section id="Contacto">
+  <div class="section-header reveal" class="exp-bg">
+    <p class="section-label">Contacto</p>
+    <h2 class="section-title">Redes</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="redes-grid reveal">
+    <div class="red-card">
+      <a href="https://github.com/magovenegas" target="_blank" rel="noopener">
+        <img src="git.png" alt="GitHub">
+        <span>GitHub</span>
+      </a>
+    </div>
+    <div class="red-card">
+      <a href="https://g.dev/camilovenegas1" target="_blank" rel="noopener">
+        <img src="dev.png" alt="Google Developer">
+        <span>Google Dev</span>
+      </a>
+    </div>
+    <div class="red-card">
+      <a href="https://platzi.com/p/camilovenegas/" target="_blank" rel="noopener">
+        <img src="platzi.png" alt="Platzi">
+        <span>Platzi</span>
+      </a>
+    </div>
+    <div class="red-card">
+      <a href="https://www.linkedin.com/in/camilo-eduardo-venegas-solorzano-7b5477144" target="_blank" rel="noopener">
+        <img src="LinkedIn.png" alt="Platzi">
+        <span>LinkedIn</span>
+      </a>
     </div>
   </div>
 </section>
